@@ -4,7 +4,7 @@
 #saber si dos listas son iguales: https://repl.it/X3G/4163
 #sumar los elementos de una lista multitipo: https://repl.it/X3G/4164
 #saber si los elementos de una lista son consecutivos o no: https://repl.it/X3G/4274
-
+#eliminar numeros repetidos: https://repl.it/X3G/4276
 
 
 # CLASE NODO
@@ -225,7 +225,70 @@ class Lista:
 				nodo = nodo.sig
 
 		return True
+		
+	def eliminar_numerosR(self):
+
+		nodo = self.__primero
+
+		while (nodo != None):
+
+			valor = nodo.sig
+
+			while (valor != None):
+
+				if(nodo.info == valor.info):
+
+					self.eliminar_numeroR2(nodo.info)
+
+				valor = valor.sig
+
+			nodo = nodo.sig
 
 
-    
-			
+	def eliminar_numeroR2(self,valor):
+
+
+		while (self.__primero != None and self.__primero.info == valor):
+
+			temp = self.__primero
+
+			self.__primero = temp.sig
+
+			if(self.__primero == self.__actual):
+
+				self.__actual = self.__primero
+
+			self.__n = self.__n - 1
+			self.__pos = self.__pos - 1
+			del temp
+
+			if (self.__primero == self.__ultimo):
+
+				self.__primero = None
+				self.__ultimo = None
+				self.__actual = None
+
+		nodo = self.__primero
+
+		while (nodo != None):
+
+			while (nodo.sig != None and nodo.sig.info == valor):
+
+				temp = nodo.sig
+
+				if (nodo.sig == self.__ultimo):
+					self.__ultimo = nodo
+
+				nodo.sig = temp.sig
+
+				if (nodo.sig == self.__actual):
+
+					self.__actual = temp.sig
+
+				self.__n = self.__n - 1
+				self.__pos = self.__pos - 1
+
+				del temp
+
+			nodo = nodo.sig
+
