@@ -3,6 +3,7 @@
 #verificar si hay numeros repetidos en la lista: https://repl.it/X3G/4162
 #saber si dos listas son iguales: https://repl.it/X3G/4163
 #sumar los elementos de una lista multitipo: https://repl.it/X3G/4164
+#saber si los elementos de una lista son consecutivos o no: https://repl.it/X3G/4274
 
 
 
@@ -207,6 +208,24 @@ class Lista:
 			nodo = nodo.sig
 
 		return suma
+		
+	def elem_consecutivos(self):
+
+		nodo = self.__primero
+		cont = self.__primero.sig
+
+		while (nodo == None):
+
+			for i in range(self.__n-1):
+
+				if (nodo > cont):
+
+					return False
+
+				nodo = nodo.sig
+
+		return True
+
 
     
 			
