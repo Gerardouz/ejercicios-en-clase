@@ -3,7 +3,7 @@
 #verificar si hay numeros repetidos en la lista: https://repl.it/X3G/4162
 #saber si dos listas son iguales: https://repl.it/X3G/4163
 #sumar los elementos de una lista multitipo: https://repl.it/X3G/4164
-#saber si los elementos de una lista son consecutivos o no: https://repl.it/X3G/4274
+#saber si los elementos de una lista son consecutivos o no: https://repl.it/X3G/4471
 #eliminar numeros repetidos: https://repl.it/X3G/4276
 
 
@@ -214,7 +214,7 @@ class Lista:
 		nodo = self.__primero
 		cont = self.__primero.sig
 
-		while (nodo == None):
+		while (nodo != None):
 
 			for i in range(self.__n-1):
 
