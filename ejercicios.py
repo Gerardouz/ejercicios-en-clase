@@ -132,7 +132,28 @@ class Lista:
 
 		for i in range(h):
 			self.eliminar_prim()
+	# Metodo para intercambiar los valores de un nodo y el nodo de una posición dada por parametro
+	def intercambiar(self,nodo,pos):
 
+		if (nodo == None):
+			return
+		if (pos >= self.__n):
+			self.intercambiar(nodo,self.__n - 1)
+			return
+		n = self.__primero
+		cont = 0
+		while (n != None):
+
+			if (cont == pos):
+
+				h = nodo.info
+				nodo.info = n.info
+				n.info = h
+				del h
+				return
+
+			cont = cont + 1
+			n = n.sig
 	# Metodo para verificar si hay numeros repetidos en la lista
 
 	def numeros_repetidos(self):
@@ -164,7 +185,7 @@ class Lista:
 
 	# Metodo para consultar la cantidad de elementos de una lista
 
-	def consultar_n(self):
+	def consulta_n(self):
 
 		return self.__n
 
@@ -173,7 +194,7 @@ class Lista:
 	def listas_iguales(self,lista):
 
 
-		if (self.__n != lista.consultar_n() ):
+		if (self.__n != lista.consulta_n() ):
 
 			return False
 
@@ -208,23 +229,42 @@ class Lista:
 			nodo = nodo.sig
 
 		return suma
-		
-	def elem_consecutivos(self):
+	# Metodo para saber si una lista tiene sus elementos consecutivos (ascendiente)
+	def consecutivos_asc(self):
 
 		nodo = self.__primero
-		cont = self.__primero.sig
+
+		while (nodo != None):
+			siguiente = nodo.sig
+
+			if (siguiente == None):
+
+				return True
+			if (nodo.info > siguiente.info):
+
+				return False
+			nodo = nodo.sig
+
+		return True
+	#Metodo para saber si una lista tiene sus elementos consecutivos (descendiente)
+	def consecutivos_desc(self):
+
+		nodo = self.__primero
 
 		while (nodo != None):
 
-			for i in range(self.__n-1):
+			siguiente = nodo.sig
 
-				if (nodo > cont):
+			if (siguiente == None):
 
-					return False
+				return True
 
-				nodo = nodo.sig
+			if (nodo.info < siguiente.info):
 
-		return True
+				return False
+
+			nodo = nodo.sig
+	#Metodo para eliminar los numeros repetidos
 		
 	def eliminar_numerosR(self):
 
@@ -291,4 +331,82 @@ class Lista:
 				del temp
 
 			nodo = nodo.sig
+			
+	# Metodo para mezclar dos listas ordenadas 
+	def mezclar(self,l):
+
+		l1 = self.__n
+		l2 = l.consulta_n()
+
+		i = 0
+		j = 0
+		c = Lista()
+
+		while (i < l1 and j < l2):
+
+			if (self.return_elem(i) < l.return_elem(j) ):
+
+				c.insertar_ultimo(self.return_elem(i))
+				i = i + 1
+
+			else:
+
+				c.insertar_ultimo(l.return_elem(j))
+				j = j + 1
+
+		while (i < l1):
+
+			c.insertar_ultimo(self.return_elem(i))
+			i = i + 1
+		while (j < l2):
+
+			c.insertar_ultimo(l.return_elem(j))
+			j = j + 1
+
+		return c.mostrar()
+	
+	#Metodo que retorna el elemento que esté en la posición dada por parametro
+	def return_elem(self,pos):
+
+		nodo = self.__primero
+		cont = 0
+		while (nodo != None):
+
+			if (cont == pos):
+
+				return nodo.info
+
+			nodo = nodo.sig
+			cont = cont + 1
+			
+			
+	#Metodo para ordenar la lista a traves del metodo burbuja
+	def ordenar(self):
+
+		nodo = self.__primero
+		ordenado = False
+		cont = 0
+		while (ordenado == False):
+			
+
+
+			if (nodo.sig == None):
+				nodo = self.__primero
+				cont = 0
+
+			
+			if (nodo.info > nodo.sig.info):
+
+				self.intercambiar(nodo,cont + 1)
+				
+
+			if (self.consecutivos_asc() == True):
+				ordenado = True
+				return
+
+			
+
+			nodo = nodo.sig
+			cont = cont + 1
+	
 
