@@ -1,1 +1,1 @@
-# ejercicios-en-clase
+# ejercicios
