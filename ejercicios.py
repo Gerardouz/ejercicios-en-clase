@@ -182,7 +182,21 @@ class Lista:
 		if (cont == 0):
 
 			return False
+	#Metodo que retorna el mayor elemento de una lista
+	def encontrar_mayor(self):
 
+
+		nodo = self.__primero
+		mayor = self.__primero.info
+		while (nodo != None):
+
+			if (nodo.sig != None and mayor < nodo.sig.info):
+
+
+				mayor = nodo.sig.info
+
+			nodo = nodo.sig
+		return mayor
 	# Metodo para consultar la cantidad de elementos de una lista
 
 	def consulta_n(self):
